@@ -4,25 +4,58 @@
 import henkilö
 import vuodet
 
+# dictionary - sanakirja
+
+henkilötiedot = [
+{"nimi": "aliisa", "syntymävuosi": 1980},
+{"nimi":"bob", "syntymävuosi": 1967},
+{"nimi": "Cecilia", "syntymävuosi": 1920},
+]
+
+henkilöiden_lempivärit = {
+    "aliisa": "musta",
+    "Bob": "sininen", 
+}
+
+henkilöiden_lemmikit = {
+    "aliisa": ["Musti"],
+    "bob": ["Tupu", "Hupu", "Lupu"],
+}
+
+def henkilölistaus():
+    henkilöt = []
+    for ht in henkilötiedot:
+        h = henkilö.Henkilö(ht["nimi"], ht["syntymävuosi"])
+        henkilöt.append(h)
+    for h in henkilöt:
+        print(f"{h.nimi} (s.{h.syntymävuosis})")
+        print(f"{h.nimi}, on {h.ikä()}, vuotta vanha.")
+        lemmikit = henkilöiden_lemmikit.get(h.nimi, [])
+        if lemmikit:
+            for lemmikki in lemmikit:
+                print("Lemmikki:", lemmikki)
+            try:
+                print("Lempiväri:", henkilöiden_lempivärit[h.nimi])
+            except KeyError:
+                print("Ei lempiväriä tiedossa")
+                print("-")
+        if h.ikä() > 18:
+            print("Täysi-ikäinen")
+        if h.ikä() < 50:
+            print("nuori vielä")    
+henkilölistaus()
+
 
 
 def pääfunktio():
     syntymävuosi = 1970
     aliisa = henkilö.Henkilö("Aliisa", 1980)
     bob = henkilö.Henkilö(nimi="Bob", syntymävuosi=1967)
-
-    print(aliisa.nimi)
-    print(aliisa.syntymävuosi)
-
-    print(aliisa.ikä())
-
-    print("kutsutaan henkilötiedot-funktiota")
-    paluuarvo = bob.tiedot(lempiväri="punainen")
-    print("palattiin funktiosta, paluuarvo:", paluuarvo)
-    print("Joku syntymävuosi:", syntymävuosi)
+    henkilöt = [aliisa, bob]
 
 
-pääfunktio()
+
+#pääfunktio()
 
 # teksti = input("Anna luku: ")  # input on funktio
 
